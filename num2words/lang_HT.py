@@ -62,8 +62,9 @@ class Num2Word_HT(Num2Word_EU):
                 if cnum == 20:
                     ctext = ctext+'t'
                     return ("%sey%s" % (ctext, ntext), cnum + nnum)
-                if cnum == 80:
-                    return ("%sy%s" % (ctext, ntext), cnum + nnum)
+                # if cnum == 80:
+                #     return ("%sy%s" % (ctext, ntext), cnum + nnum)
+                return ("%sey%s" % (ctext, ntext), cnum + nnum)
 
             if cnum != 80:
                 # 20: add "t" before 8 or 9
