@@ -76,7 +76,15 @@ class Num2Word_HT(Num2Word_EU):
                     ctext = ctext + "n"
                 return ("%s%s" % (ctext, ntext), cnum + nnum)
             return ("%s%s" % (ctext, ntext), cnum + nnum)
-        # Nothing else above applies
+
+        if nnum > cnum and nnum % 100 == 0:
+            # One becomes yon (instead of en) if billion or million
+            if (nnum % 1_000_000 == 0 or nnum % 1_000_000_000 == 0) and cnum == 1:
+                ctext = "yon"
+            # if multiple of a 100 and unit number is 6 or 8, remove the last letter
+            if cnum in [6,8]:
+                ctext = ctext[:-1]
+
         return ("%s %s" % (ctext, ntext), cnum + nnum)
 
     def to_ordinal(self, value):
